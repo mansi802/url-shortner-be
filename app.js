@@ -13,7 +13,10 @@ const app = express();
 
 app.use(
   cors({
-    origin: "http://localhost:5173", // your React app
+    origin:
+      process.env.NODE_ENV === "production"
+        ? process.env.FRONTEND_URL
+        : "http://localhost:5173", // your React app
     credentials: true, // 👈 this allows cookies to be sent
   })
 );
@@ -28,7 +31,11 @@ app.use("/", url_router);
 
 app.use(errorHandler);
 
-app.listen(process.env.PORT, () => {
+// Only start the server if we're not in a serverless environment
+
+app.listen(process.env.PORT || 3000, () => {
   connectDB();
-  console.log("server running at " + process.env.PORT);
+  console.log("server running at " + (process.env.PORT || 3000));
 });
+
+export default app;
