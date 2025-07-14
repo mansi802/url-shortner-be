@@ -31,7 +31,9 @@ app.use("/", url_router);
 
 app.use(errorHandler);
 
-// Only start the server if we're not in a serverless environment
+app.get("/", (req, res) => {
+  res.send("Welcome to URl Shortner API 😀");
+});
 
 app.listen(process.env.PORT || 3000, () => {
   connectDB();
