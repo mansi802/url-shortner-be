@@ -20,7 +20,7 @@ export const createShortUrl = async (req, res, next) => {
       shortUrl = await createShortUrlWithoutUser(data.url);
     }
 
-    res.status(200).json({ shortUrl: process.env.APP_URL + shortUrl });
+    res.status(200).json({ shortUrl: process.env.FRONTEND_URL + shortUrl });
   } catch (err) {
     next(err);
   }
