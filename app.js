@@ -13,10 +13,7 @@ const app = express();
 
 app.use(
   cors({
-    origin:
-      process.env.NODE_ENV === "production"
-        ? process.env.FRONTEND_URL
-        : "http://localhost:5173", // your React app
+    origin: process.env.FRONTEND_URL, // your React app
     credentials: true, // 👈 this allows cookies to be sent
   })
 );

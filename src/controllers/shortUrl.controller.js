@@ -21,10 +21,7 @@ export const createShortUrl = async (req, res, next) => {
     }
 
     res.status(200).json({
-      shortUrl:
-        process.env.NODE_ENV === "production"
-          ? process.env.FRONTEND_URL
-          : "http://localhost:5173/" + shortUrl,
+      shortUrl: process.env.FRONTEND_URL + shortUrl,
     });
   } catch (err) {
     next(err);
