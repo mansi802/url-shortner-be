@@ -11,12 +11,20 @@ import { attachUser } from "./src/utils/attachUser.js";
 
 const app = express();
 
+const allowedOrigins = [
+  process.env.FRONTEND_URL, // e.g., https://your-frontend.vercel.app
+  "http://localhost:5173",
+];
+
 app.use(
   cors({
-    origin:
-      process.env.NODE_ENV === "production"
-        ? process.env.FRONTEND_URL
-        : "http://localhost:5173",
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS: " + origin));
+      }
+    },
     credentials: true,
   })
 );
