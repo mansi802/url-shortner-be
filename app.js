@@ -11,23 +11,7 @@ import { attachUser } from "./src/utils/attachUser.js";
 
 const app = express();
 
-const allowedOrigins = [
-  process.env.FRONTEND_URL, // e.g., https://your-frontend.vercel.app
-  "http://localhost:5173",
-];
-
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS: " + origin));
-      }
-    },
-    credentials: true,
-  })
-);
+app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -43,9 +27,12 @@ app.get("/", (req, res) => {
   res.send("Welcome to URl Shortner API 😀");
 });
 
-app.listen(process.env.PORT || 3000, () => {
-  connectDB();
-  console.log("server running at " + (process.env.PORT || 3000));
-});
+if (process.env.NODE_ENV !== "production") {
+  app.listen(process.env.PORT || 3000, () => {
+    connectDB();
+    console.log("server running at " + (process.env.PORT || 3000));
+  });
+}
+connectDB();
 
 export default app;
