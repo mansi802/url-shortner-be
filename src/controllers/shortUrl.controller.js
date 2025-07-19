@@ -21,7 +21,7 @@ export const createShortUrl = async (req, res, next) => {
     }
 
     res.status(200).json({
-      shortUrl: process.env.FRONTEND_URL + "/" + shortUrl,
+      shortUrl,
     });
   } catch (err) {
     next(err);

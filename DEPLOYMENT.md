@@ -14,7 +14,7 @@ You'll need to set these environment variables in your Vercel project settings:
 MONGODB_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret_key
 NODE_ENV=production
-FRONTEND_URL=https://your-frontend-domain.vercel.app
+BACKEND_URL=https://your-frontend-domain.vercel.app
 COOKIE_SECRET=your_cookie_secret
 ```
 
@@ -42,12 +42,12 @@ COOKIE_SECRET=your_cookie_secret
 ## Important Notes
 
 - Make sure your MongoDB connection string is accessible from Vercel's servers
-- Update the `FRONTEND_URL` in your environment variables to match your frontend domain
+- Update the `BACKEND_URL` in your environment variables to match your frontend domain
 - The application will be deployed as serverless functions
 - Each API route will be available at `https://your-project.vercel.app/route-name`
 
 ## Troubleshooting
 
-- If you encounter CORS issues, make sure your `FRONTEND_URL` environment variable is set correctly
+- If you encounter CORS issues, make sure your `BACKEND_URL` environment variable is set correctly
 - Ensure your MongoDB Atlas cluster allows connections from all IP addresses (0.0.0.0/0) or specifically from Vercel's IP ranges
 - Check Vercel function logs for any database connection issues
