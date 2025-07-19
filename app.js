@@ -12,7 +12,7 @@ import { attachUser } from "./src/utils/attachUser.js";
 const app = express();
 
 const allowedOrigins = [
-  "https://url-shortner-sage-beta.vercel.app/",
+  "https://url-shortner-sage-beta.vercel.app",
   "http://localhost:5173",
 ];
 
